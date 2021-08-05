@@ -8,6 +8,10 @@ import (
 	"golang.org/x/text/encoding/simplifiedchinese"
 )
 
+type STRUCT struct {
+	Field1, Field2, Field3, Field4, Field5, Field6, Field7, Field8, Field9, Field10, Field11, Field12, Field13, Field14, Field15, Field16, Field17, Field18, Field19, Field20, Field21, Field22, Field23, Field24, Field25, Field26, Field27, Field28, Field29, Field30, Field31, Field32, Field33, Field34, Field35, Field36, Field37, Field38, Field39, Field40, Field41, Field42, Field43, Field44, Field45, Field46, Field47, Field48, Field49, Field50, Field51, Field52, Field53, Field54, Field55, Field56, Field57, Field58, Field59, Field60, Field61, Field62, Field63, Field64, Field65, Field66, Field67, Field68, Field69, Field70, Field71, Field72, Field73, Field74, Field75, Field76, Field77, Field78, Field79, Field80, Field81, Field82, Field83, Field84, Field85, Field86, Field87, Field88, Field89, Field90, Field91, Field92, Field93, Field94, Field95, Field96, Field97, Field98, Field99, Field100, Field101, Field102, Field103, Field104, Field105, Field106, Field107, Field108, Field109, Field110, Field111, Field112, Field113, Field114, Field115, Field116, Field117, Field118, Field119, Field120, Field121, Field122, Field123, Field124, Field125, Field126, Field127, Field128, Field129, Field130, Field131, Field132, Field133, Field134, Field135, Field136, Field137, Field138, Field139, Field140, Field141, Field142, Field143, Field144, Field145, Field146, Field147, Field148, Field149, Field150, Field151, Field152, Field153, Field154, Field155, Field156, Field157, Field158, Field159, Field160, Field161, Field162, Field163, Field164, Field165, Field166, Field167, Field168, Field169, Field170, Field171, Field172, Field173, Field174, Field175, Field176, Field177, Field178, Field179, Field180, Field181, Field182, Field183, Field184, Field185, Field186, Field187, Field188, Field189, Field190, Field191, Field192, Field193, Field194, Field195, Field196, Field197, Field198, Field199, Field200, Field201, Field202, Field203, Field204, Field205, Field206, Field207, Field208, Field209, Field210, Field211, Field212, Field213, Field214, Field215, Field216, Field217, Field218, Field219, Field220, Field221, Field222, Field223, Field224, Field225, Field226, Field227, Field228, Field229, Field230, Field231, Field232, Field233, Field234, Field235, Field236, Field237, Field238, Field239, Field240, Field241, Field242, Field243, Field244, Field245, Field246, Field247, Field248, Field249, Field250, Field251, Field252, Field253, Field254 int
+}
+
 type Struct1 struct{ Field int }
 type Struct2 struct{ Field Struct1 }
 type Struct3 struct{ Field Struct2 }
@@ -201,6 +205,12 @@ func (f foo) Func12() ([]map32, *dbus.Error) {
 	println("Func12 called")
 	defer println("should panic invalid signature (exceeded maximum array recursion)")
 	return []map32{}, nil
+}
+
+func (f foo) Func13() (STRUCT, *dbus.Error) {
+	println("Func13 called")
+	defer println("should panic invalid signature (longer than 255)")
+	return STRUCT{}, nil
 }
 
 func main() {
