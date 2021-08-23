@@ -134,7 +134,7 @@ type foo struct{}
 
 func (f foo) Func1() (string, *dbus.Error) {
 	println("Func1 called")
-	defer println("Func1 should fail while encode: invalid string")
+	defer println("invalid string, lose connection")
 	enc := simplifiedchinese.GB18030.NewEncoder()
 	ret, _ := enc.String("一些汉字") // ret is a STRING in GB18030
 	return ret, nil
@@ -148,7 +148,7 @@ func (f foo) Func2() (Struct32, *dbus.Error) {
 
 func (f foo) Func3() (struct{}, *dbus.Error) {
 	println("Func3 called")
-	defer println("empty struct, should panic while generate signature")
+	defer println("empty struct, lose connection")
 	return struct{}{}, nil
 }
 
@@ -160,7 +160,7 @@ func (f foo) Func4() (dbus.Variant, *dbus.Error) {
 
 func (f foo) Func5() (Struct33, *dbus.Error) {
 	println("Func5 called")
-	defer println("should panic invalid signature (exceeded maximum struct recursion)")
+	defer println("invalid signature (exceeded maximum struct recursion), lose connection")
 	return Struct33{}, nil
 }
 
@@ -173,19 +173,19 @@ func (f foo) Func6() (dbus.Variant, *dbus.Error) {
 
 func (f foo) Func7() (dbus.Variant, *dbus.Error) {
 	println("Func7 called")
-	defer println("this message has a empty array, which will not be check depth, so this is a valid message")
+	defer println("this is a valid message, but will cause this demo lose its connection")
 	return dbusMakeVariant64(map32{}), nil
 }
 
 func (f foo) Func8() (dbus.Variant, *dbus.Error) {
 	println("Func8 called")
-	defer println("message exceeds depth limitation")
+	defer println("message exceeds depth limitation, lose connection")
 	return dbusMakeVariant64(Map1), nil
 }
 
 func (f foo) Func9() (dbus.Variant, *dbus.Error) {
 	println("Func9 called")
-	defer println("message exceeds depth limitation")
+	defer println("message exceeds depth limitation, lose connection")
 	return dbus.MakeVariant(dbusMakeVariant64(1)), nil
 }
 
@@ -203,19 +203,18 @@ func (f foo) Func11() ([]map31, *dbus.Error) {
 
 func (f foo) Func12() ([]map32, *dbus.Error) {
 	println("Func12 called")
-	defer println("should panic invalid signature (exceeded maximum array recursion)")
+	defer println("invalid signature (exceeded maximum array recursion), lose connection")
 	return []map32{}, nil
 }
 
 func (f foo) Func13() (STRUCT, *dbus.Error) {
 	println("Func13 called")
-	defer println("should panic invalid signature (longer than 255)")
+	defer println("invalid signature (longer than 255), lose connection")
 	return STRUCT{}, nil
 }
 
 func main() {
-
-	println("when error occur during encode, my modified godbus will send this error to dbus as the method_return's dbus.Error.")
+	println("before my patch , if a error occur during encoding, it will lose its dbus connection.")
 	println("type command like `qdbus --literal com.github.blackdesk.Demo /com/github/blackdesk/Demo com.github.blackdesk.Demo.Func3` to test this demo")
 
 	conn, err := dbus.SessionBus()
