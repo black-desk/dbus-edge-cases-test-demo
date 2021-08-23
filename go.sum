@@ -1,5 +1,5 @@
-github.com/godbus/dbus/v5 v5.0.5-0.20210811152313-cc14158d9946 h1:WT6HCK6kXdbNfVEx1beN7ErI1CSl7LLUE0ewdeHCm6I=
-github.com/godbus/dbus/v5 v5.0.5-0.20210811152313-cc14158d9946/go.mod h1:xhWf0FNVPg57R7Z0UbKHbJfkEywrmjJnf7w5xrFpKfA=
+github.com/godbus/dbus/v5 v5.0.5-0.20210507200753-e6cb346e4ee4 h1:96J0yS1mwYDarZvWvH91j83S2foMuWBRiCNMOHHcx14=
+github.com/godbus/dbus/v5 v5.0.5-0.20210507200753-e6cb346e4ee4/go.mod h1:xhWf0FNVPg57R7Z0UbKHbJfkEywrmjJnf7w5xrFpKfA=
 golang.org/x/text v0.3.6 h1:aRYxNxv6iGQlyVaZmk6ZgYEDa+Jg18DxebPSrd6bg1M=
 golang.org/x/text v0.3.6/go.mod h1:5Zoc/QRtKVWzQhOtBMvqHzDpF6irO9z98xDceosuGiQ=
 golang.org/x/tools v0.0.0-20180917221912-90fa682c2a6e/go.mod h1:n7NCudcB/nEzxVGmLbDWY5pfWTLqBcC2KZ6jyYvM4mQ=
